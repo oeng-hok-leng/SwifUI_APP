@@ -1,6 +1,6 @@
 //
 //  GridLayout.swift
-//  Memorize_2
+//  Emoji_Art 2
 //
 //  Created by oeng hokleng on 29/5/22.
 //
