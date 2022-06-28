@@ -17,6 +17,8 @@ class EmojiArtDocumentStore: ObservableObject
     
     let name: String
     
+    
+    
     func name(for document: EmojiArtDocument) -> String {
         if documentNames[document] == nil {
             documentNames[document] = "Untitled"
@@ -26,17 +28,17 @@ class EmojiArtDocumentStore: ObservableObject
     
     func setName(_ name: String, for document: EmojiArtDocument) {
         // the following if let ensures, that the function works for both User defaults and file system
-//        if let url = directory?.appendingPathComponent(name){
-//            // check if name already exists. If so ignore request
-//            if !documentNames.values.contains(name) {
-//                removeDocument(document)
-//                document.url = url
-//                documentNames[document] = name
-//            }
-//        } else {
-//            documentNames[document] = name
-//        }
-        documentNames[document] = name
+        if let url = directory?.appendingPathComponent(name){
+            // check if name already exists. If so ignore request
+            if !documentNames.values.contains(name) {
+                removeDocument(document)
+                document.url = url
+                documentNames[document] = name
+            }
+        } else {
+            documentNames[document] = name
+        }
+       
     }
     
     var documents: [EmojiArtDocument] {
@@ -45,16 +47,15 @@ class EmojiArtDocumentStore: ObservableObject
     
     func addDocument(named name: String = "Untitled") {
         // documents stored in the file system have to have unique names
-//        let uniqueName = name.uniqued(withRespectTo: documentNames.values)
-//        let document : EmojiArtDocument
-//        // the following if let ensures, that the function works for both User defaults and file system
-//        if let url = directory?.appendingPathComponent(uniqueName){
-//            document = EmojiArtDocument(url: url)
-//        } else {
-//            document = EmojiArtDocument()
-//        }
-//        documentNames[document] = uniqueName
-        documentNames[EmojiArtDocument()] = name
+        let uniqueName = name.uniqued(withRespectTo: documentNames.values)
+        let document : EmojiArtDocument
+        // the following if let ensures, that the function works for both User defaults and file system
+        if let url = directory?.appendingPathComponent(uniqueName){
+            document = EmojiArtDocument(url: url)
+        } else {
+            document = EmojiArtDocument()
+        }
+        documentNames[document] = uniqueName
     }
 
     func removeDocument(_ document: EmojiArtDocument) {
@@ -99,6 +100,21 @@ class EmojiArtDocumentStore: ObservableObject
 //    }
     
     private var directory : URL?
+    
+    init(directory: URL){
+        self.name = directory.lastPathComponent
+        self.directory = directory
+        do {
+            let documents = try FileManager.default.contentsOfDirectory(atPath: directory.path)
+            for document in documents {
+                let emojiArtDocument = EmojiArtDocument(url: directory.appendingPathComponent(document))
+                self.documentNames[emojiArtDocument] = document
+            }
+        }catch {
+            print("EmojiArtDocumentStore: couldn't create store from directory \(directory): \(error.localizedDescription)")
+        }
+        
+    }
 }
 //Extensions for conversion of Dictionary to property list
 extension Dictionary where Key == EmojiArtDocument, Value == String {

@@ -23,6 +23,7 @@
 		B2E1CFBE2849F28700FABE8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2E1CFBD2849F28700FABE8C /* Assets.xcassets */; };
 		B2E1CFC12849F28700FABE8C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2E1CFC02849F28700FABE8C /* Preview Assets.xcassets */; };
 		B2E1CFC82849F33100FABE8C /* EmojiArtDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1CFC72849F33100FABE8C /* EmojiArtDocument.swift */; };
+		B2E5FF022869A28E0032586B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E5FF012869A28E0032586B /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		B2E1CFBD2849F28700FABE8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2E1CFC02849F28700FABE8C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B2E1CFC72849F33100FABE8C /* EmojiArtDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocument.swift; sourceTree = "<group>"; };
+		B2E5FF012869A28E0032586B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		B2E5FF032869AADC0032586B /* EmojiArt-2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "EmojiArt-2-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +78,10 @@
 		B2E1CFB82849F28500FABE8C /* EmojiArt_2 */ = {
 			isa = PBXGroup;
 			children = (
+				B2E5FF032869AADC0032586B /* EmojiArt-2-Info.plist */,
 				B2E1CFB92849F28500FABE8C /* EmojiArt_2App.swift */,
 				B2E1CFBB2849F28500FABE8C /* EmojiArtDocumentView.swift */,
+				B2E5FF012869A28E0032586B /* ImagePicker.swift */,
 				B201F1AC285335B600B56651 /* EmojiArtDocumentPalette.swift */,
 				B2BA5891285090B100F85CAD /* AnimatableSystemFontModifier.swift */,
 				B2BA588F28508BC100F85CAD /* OptionalImage.swift */,
@@ -185,6 +190,7 @@
 				B2E1CFC82849F33100FABE8C /* EmojiArtDocument.swift in Sources */,
 				B28637ED28597DA800CAC41F /* EditableText.swift in Sources */,
 				B2815D7A28582CE400F1F5AD /* GridLayout.swift in Sources */,
+				B2E5FF022869A28E0032586B /* ImagePicker.swift in Sources */,
 				B2E1CFBA2849F28500FABE8C /* EmojiArt_2App.swift in Sources */,
 				B201F1AD285335B600B56651 /* EmojiArtDocumentPalette.swift in Sources */,
 			);
@@ -318,6 +324,8 @@
 				DEVELOPMENT_TEAM = LXPQ92Y325;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EmojiArt-2-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Emoji Art let you set the background of your document";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -347,6 +355,8 @@
 				DEVELOPMENT_TEAM = LXPQ92Y325;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EmojiArt-2-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Emoji Art let you set the background of your document";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

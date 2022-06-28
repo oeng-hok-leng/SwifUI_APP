@@ -72,6 +72,7 @@ struct EmojiArtDocumentView: View {
                     return self.drop(providers: provider, at: location)
                 }
                 .navigationBarItems(
+                    leading: pickImage,
                     trailing:
                         Button(
                             action: {
@@ -91,8 +92,8 @@ struct EmojiArtDocumentView: View {
                                                      dismissButton: .default(Text("OK"))
                                         )
                                     }
-                                    
-                                    
+                                
+                                
                                 
                             }
                         )
@@ -112,8 +113,41 @@ struct EmojiArtDocumentView: View {
         }
     }
     
+    @State private var showImagePicker = false
+    @State private var imagePickerSourceType = UIImagePickerController.SourceType.camera
     
-    
+    private var pickImage: some View {
+        HStack{
+            Image(systemName: "photo")
+                .imageScale(.large)
+                .foregroundColor(.accentColor)
+                .onTapGesture {
+                    self.imagePickerSourceType = .photoLibrary
+                    self.showImagePicker = true
+                }
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                    Image(systemName: "camera")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
+                        .onTapGesture {
+                            self.imagePickerSourceType = .camera
+                            self.showImagePicker = true
+                        }
+                }
+            
+        }
+                .sheet(isPresented: $showImagePicker){
+                    ImagePicker(sourceType: self.imagePickerSourceType){image in
+                        if image != nil {
+                            DispatchQueue.main.async {
+                                self.document.backgroundURL = image?.storeInFilesystem()
+                            }
+                        }
+                        self.showImagePicker = false
+                    }
+                }
+        
+    }
     
     @State private var explainBackgroundPaste = false;
     @State private var confirmBackgroundPaste = false;
@@ -143,7 +177,7 @@ struct EmojiArtDocumentView: View {
             }
     }
     
-  
+    
     @GestureState private var gesturePanOffSet: CGSize = .zero
     
     private var panOffset: CGSize{

@@ -33,6 +33,7 @@ struct EmojiArtDocumentChooser: View {
             }
             .navigationTitle(self.store.name)
             .navigationBarItems(
+                
                 leading: Button(action: {
                             withAnimation{
                                 self.store.addDocument()
